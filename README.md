@@ -1,16 +1,16 @@
 # Test for PB
 
-##Description
+## Description
 Web service with api and small ui to find information about bank by card number.
 
-##Technologies
+## Technologies
 - Java 17
 - Spring Boot 3.3.3
 - PostgreSQL
 - Maven
 - Docker
 
-##Start Guide
+## Start Guide
 You need to have docker.
 - Download the project;
 - Go into project directory and open cmd or IDE;
@@ -20,7 +20,7 @@ You need to have docker.
   - ```docker-compose up -d```
 - Enjoy your life.
 
-##Endpoints
+## Endpoints
 - API (could do in Postman): 
   - POST request: http://localhost:8080/api/ with body pattern: {"card":"16 numbers"}
 - UI: 
