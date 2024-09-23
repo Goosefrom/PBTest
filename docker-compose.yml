@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  api:
+    image: pb-test.jar
+    ports:
+      - 8080:8080
+    depends_on:
+      postgreSQL:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://PostgreSQL:5432/banks?reWriteBatchedInserts=true
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
+      - _JAVA_OPTIONS=-Xmx12g -Xms12g -XX:MaxMetaspaceSize=2048m
+
+  postgreSQL:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: banks
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
