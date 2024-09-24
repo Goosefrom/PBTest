@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface EmitentRepository extends JpaRepository<Emitent, Long>, JpaSpecificationExecutor<Emitent> {
 
-    @Query("SELECT e FROM Emitent e WHERE :cardNumber BETWEEN e.minRange AND e.maxRange")
+    @Query("SELECT DISTINCT e FROM Emitent e WHERE :cardNumber BETWEEN e.minRange AND e.maxRange")
     Optional<Emitent> findByCardInRange(@Param("cardNumber") String cardNumber);
 
     @Query("SELECT e.id FROM Emitent e")
