@@ -9,12 +9,6 @@ public class NumberConstraintValidator implements ConstraintValidator<NumberCons
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
         if (value == null || value.isEmpty()) return false;
 
-        try {
-            Double.parseDouble(value);
-            return true;
-        }
-        catch (NumberFormatException e) {
-            return false;
-        }
+         return value.chars().allMatch(Character::isDigit);
     }
 }
